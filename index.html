@@ -1,800 +1,439 @@
 <!DOCTYPE html>
-
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Nexus Data Partners - Sua Consultoria de Banco de Dados</title>
-
-<meta content="Migração e otimização de PostgreSQL &amp; MySQL sem downtime para PMEs. Consultoria em alta disponibilidade na AWS (RDS, Aurora) e on‑premises. Auditoria gratuita." name="description"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="True" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&amp;family=Roboto:wght@500;700&amp;display=swap" rel="stylesheet"/><style>:root {
-    --primary-color: #004D79; /* Azul escuro principal */
-    --secondary-color: #0077B6; /* Azul de destaque */
-    --accent-color: #00A6ED;   /* Azul claro para detalhes */
-    --text-color: #333;
-    --light-bg: #f0f4f8; /* Fundo mais suave e moderno */
-    --dark-bg: #1c2b3d;  /* Fundo escuro para seções de destaque */
-    --white: #ffffff;
-    --gray-light: #e6e9ed;
-    --border-radius: 12px;
-    --box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-    --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-body {
-    font-family: 'Poppins', sans-serif; /* Fonte mais moderna e clean */
-    line-height: 1.8;
-    color: var(--text-color);
-    margin: 0;
-    padding-top: 65px;
-    background-color: var(--light-bg);
-    scroll-behavior: smooth;
-    overflow-x: hidden;
-}
-
-h1, h2, h3 {
-    font-family: 'Roboto', sans-serif; /* Fonte complementar para títulos */
-    color: var(--primary-color);
-    line-height: 1.3;
-}
-
-h2 {
-    font-size: 2.8rem;
-    font-weight: 700;
-}
-
-h3 {
-    font-size: 1.8rem;
-    font-weight: 600;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 0 30px;
-}
-
-header {
-    background-color: var(--white);
-    padding: 0.75rem 0;
-    border-bottom: 1px solid var(--gray-light);
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-}
-
-header .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-header .logo img {
-    max-width: 100px;
-    height: auto;
-    transition: transform 0.3s ease;
-}
-
-header .logo img:hover {
-    transform: scale(1.05);
-}
-
-.main-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-    padding: 0;
-    margin: 0;
-}
-
-.main-nav a {
-    text-decoration: none;
-    color: var(--primary-color);
-    font-weight: 500;
-    font-size: 0.95rem;
-    position: relative;
-    transition: color 0.3s ease;
-}
-
-.main-nav a::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: var(--secondary-color);
-    transition: width 0.3s ease;
-}
-
-.main-nav a:hover {
-    color: var(--secondary-color);
-}
-
-.main-nav a:hover::after {
-    width: 100%;
-}
-
-.cta-nav {
-    background-color: var(--secondary-color);
-    color: var(--white) !important;
-    padding: 8px 18px;
-    border-radius: 50px;
-    font-weight: bold;
-    font-size: 0.9rem;
-    transition: var(--transition);
-}
-
-.cta-nav:hover {
-    background-color: #005f94;
-    color: var(--white) !important;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-@media (max-width: 768px) {
-    header .container {
-        flex-direction: column;
-        gap: 10px;
-        align-items: center;
-    }
-}
-
-main {
-    padding-top: 0;
-}
-
-section {
-    padding: 100px 0;
-}
-
-/* Hero Section */
-#hero {
-    background-color: var(--primary-color);
-    color: var(--white);
-    padding: 120px 30px;
-    text-align: center;
-    border-radius: 0 0 var(--border-radius) var(--border-radius);
-    position: relative;
-    overflow: hidden;
-}
-
-#hero .hero-content {
-    max-width: 900px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 1;
-}
-
-#hero h1 {
-    font-size: 3.5rem;
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-    color: var(--white);
-}
-
-#hero p {
-    font-size: 1.2rem;
-    margin-bottom: 3rem;
-    line-height: 1.8;
-    color: var(--white);
-}
-
-.cta-button {
-    display: inline-block;
-    background-color: var(--secondary-color);
-    color: var(--white);
-    padding: 18px 40px;
-    text-decoration: none;
-    border-radius: 50px;
-    font-weight: bold;
-    font-size: 1.1rem;
-    transition: var(--transition);
-    box-shadow: var(--box-shadow);
-    margin: 0 10px;
-}
-
-.cta-button:hover {
-    background-color: #005f94;
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-}
-
-/* Why Choose Us Section */
-#why-choose-us {
-    background-color: var(--white);
-    text-align: center;
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-    margin: 0 auto 60px;
-    position: relative;
-}
-
-#why-choose-us h2 {
-    color: var(--primary-color);
-    margin-bottom: 60px;
-}
-
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 40px;
-    text-align: left;
-}
-
-.feature-item {
-    background-color: var(--light-bg);
-    padding: 40px;
-    border-radius: var(--border-radius);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    transition: var(--transition);
-}
-
-.feature-item:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
-
-.feature-item img {
-    max-width: 90px;
-    margin-bottom: 20px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    filter: grayscale(100%) brightness(0.7) saturate(0);
-    transition: filter 0.5s ease;
-}
-
-.feature-item:hover img {
-    filter: none;
-}
-
-.feature-item h3 {
-    color: var(--secondary-color);
-    margin-bottom: 15px;
-    text-align: center;
-}
-
-.feature-item p {
-    font-size: 1rem;
-    text-align: center;
-    line-height: 1.7;
-}
-
-/* Services Section */
-#services {
-    text-align: center;
-    margin-bottom: 60px;
-}
-
-#services h2 {
-    color: var(--primary-color);
-    margin-bottom: 60px;
-}
-
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    text-align: left;
-}
-
-.service-item {
-    background-color: var(--white);
-    padding: 30px;
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-    transition: var(--transition);
-    text-align: center;
-}
-
-.service-item:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
-
-.service-img {
-    max-width: 100px;
-    height: auto;
-    margin-bottom: 15px;
-}
-
-.service-item h3 {
-    color: var(--secondary-color);
-    margin-bottom: 15px;
-}
-
-.service-item p {
-    font-size: 1rem;
-    line-height: 1.7;
-}
-
-/* Tools Section */
-#tools {
-    text-align: center;
-    margin-bottom: 60px;
-    padding-top: 60px;
-}
-
-#tools h2 {
-    color: var(--primary-color);
-    margin-bottom: 30px;
-}
-
-.tools-intro {
-    max-width: 800px;
-    margin: 0 auto 50px;
-    font-size: 1.1rem;
-    line-height: 1.8;
-}
-
-.tools-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-}
-
-.tool-item {
-    background-color: var(--white);
-    padding: 35px;
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-    transition: var(--transition);
-    text-align: left;
-}
-
-.tool-item:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
-}
-
-.tool-item h3 {
-    color: var(--secondary-color);
-    margin-bottom: 10px;
-}
-
-.tool-item p {
-    font-size: 1rem;
-    line-height: 1.7;
-}
-
-/* Cases Section */
-#cases {
-    background-color: var(--dark-bg);
-    color: var(--white);
-    text-align: center;
-    padding: 100px 30px;
-    border-radius: var(--border-radius);
-    margin: 0 auto 60px;
-}
-
-#cases h2 {
-    color: var(--white);
-    margin-bottom: 60px;
-}
-
-.cases-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 50px;
-    text-align: left;
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-.case-item {
-    background-color: rgba(255, 255, 255, 0.08);
-    padding: 40px;
-    border-radius: var(--border-radius);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    transition: var(--transition);
-}
-
-.case-item:hover {
-    transform: translateY(-5px);
-    background-color: rgba(255, 255, 255, 0.15);
-}
-
-.case-item h3 {
-    color: var(--accent-color);
-    font-size: 1.75rem;
-    margin-bottom: 20px;
-}
-
-.case-subtitle {
-    font-weight: bold;
-    color: var(--white);
-    margin-top: 25px;
-    margin-bottom: 10px;
-}
-
-.case-item ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.case-item li {
-    margin-bottom: 15px;
-    font-size: 1rem;
-    line-height: 1.7;
-    position: relative;
-    padding-left: 25px;
-}
-
-.case-item li::before {
-    content: '✓';
-    color: var(--accent-color);
-    font-weight: bold;
-    display: inline-block;
-    width: 1em;
-    margin-left: -1em;
-    position: absolute;
-    left: 0;
-}
-
-/* Contact Section */
-#contact {
-    padding: 100px 30px;
-    background-color: var(--white);
-    text-align: center;
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-    margin: 0 auto 60px;
-}
-
-#contact h2 {
-    color: var(--primary-color);
-    margin-bottom: 40px;
-}
-
-.contact-form {
-    max-width: 700px;
-    margin: 0 auto;
-    padding: 40px;
-    border-radius: var(--border-radius);
-    background-color: var(--light-bg);
-}
-
-.form-group {
-    margin-bottom: 25px;
-    text-align: left;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 500;
-    color: var(--text-color);
-}
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 15px;
-    border: 1px solid var(--gray-light);
-    border-radius: var(--border-radius);
-    font-size: 1rem;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-    border-color: var(--secondary-color);
-    box-shadow: 0 0 0 4px rgba(0, 119, 182, 0.1);
-    outline: none;
-}
-
-#contact .cta-button {
-    background-color: var(--secondary-color);
-    color: var(--white);
-    display: inline-block;
-    width: auto;
-    padding: 15px 30px;
-    border: none;
-    border-radius: 50px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 30px;
-    text-decoration: none;
-    transition: var(--transition);
-    box-shadow: var(--box-shadow);
-}
-
-#contact .cta-button:hover {
-    background-color: #005f94;
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-}
-
-/* Footer */
-footer {
-    background-color: var(--dark-bg);
-    color: var(--white);
-    padding: 2.5rem 0;
-    text-align: center;
-    font-size: 0.9rem;
-    border-radius: var(--border-radius) var(--border-radius) 0 0;
-}
-
-footer .container {
-    padding: 15px 30px;
-}
-
-
-/* --- Testimonials --- */
-#testimonials {
-    background-color: var(--white);
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-    margin: 0 auto 60px;
-    text-align: center;
-}
-#testimonials h2 { margin-bottom: 40px; }
-.testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
-}
-.testimonial-item {
-    background: var(--light-bg);
-    border-radius: var(--border-radius);
-    padding: 28px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
-    transition: var(--transition);
-}
-.testimonial-item:hover {
-    transform: translateY(-6px);
-}
-.testimonial-item .quote { font-style: italic; margin: 0 0 12px; }
-.testimonial-item .role { color: var(--primary-color); font-weight: 600; margin: 0; }
-
-/* --- Sticky CTA Bar --- */
-#sticky-cta {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: rgba(28, 43, 61, 0.97);
-    color: var(--white);
-    z-index: 2000;
-    box-shadow: 0 -6px 20px rgba(0,0,0,0.2);
-    backdrop-filter: blur(4px);
-}
-#sticky-cta .sticky-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 14px 20px;
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-#sticky-cta .sticky-text {
-    font-weight: 600;
-}
-#sticky-cta .sticky-btn {
-    background: var(--accent-color);
-    color: var(--white);
-    text-decoration: none;
-    padding: 10px 18px;
-    border-radius: 40px;
-    font-weight: 700;
-    transition: var(--transition);
-    box-shadow: var(--box-shadow);
-}
-#sticky-cta .sticky-btn:hover {
-    transform: translateY(-3px);
-}
-#sticky-cta .sticky-btn.outline {
-    background: transparent;
-    border: 2px solid var(--accent-color);
-}
-
-/* --- Floating WhatsApp Button --- */
-#whatsapp-float {
-    position: fixed;
-    right: 18px;
-    bottom: 78px; /* above sticky bar */
-    width: 56px;
-    height: 56px;
-    background: #25D366;
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-    z-index: 2100;
-}
-#whatsapp-float .wa-icon {
-    display: inline-block;
-    width: 28px;
-    height: 28px;
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="%23fff" viewBox="0 0 24 24"><path d="M20.52 3.48A11.86 11.86 0 0012 0C5.37 0 .02 5.35.02 11.96c0 2.11.55 4.18 1.59 6.01L0 24l6.2-1.61a12 12 0 005.8 1.48h.01c6.63 0 11.98-5.35 11.98-11.96 0-3.2-1.25-6.2-3.47-8.43zM12 21.48A9.5 9.5 0 016.38 20l-.46-.27-3.68.96.98-3.59-.3-.46a9.54 9.54 0 01-1.5-5.16C1.42 6.83 6.25 2 12 2c2.53 0 4.9.98 6.69 2.77A9.4 9.4 0 0121.58 12c0 5.75-4.83 9.48-9.58 9.48zm5.52-7.23c-.3-.15-1.77-.87-2.05-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.18-.17.2-.35.22-.65.07-1.77-.87-2.94-1.55-4.14-3.51-.31-.53.32-.49.9-1.62.1-.2.05-.37-.03-.52-.08-.15-.67-1.6-.92-2.2-.24-.57-.49-.49-.67-.5l-.57-.01c-.2 0-.52.07-.8.37-.27.3-1.05 1.03-1.05 2.5 0 1.47 1.08 2.9 1.23 3.1.15.2 2.12 3.23 5.14 4.52.72.31 1.28.5 1.71.64.72.23 1.38.2 1.9.12.58-.09 1.77-.72 2.02-1.41.25-.7.25-1.3.17-1.42-.08-.12-.27-.2-.57-.35z"/></svg>') center/contain no-repeat;
-}
-
-/* Ensure footer spacing above sticky bar */
-footer { padding-bottom: 90px; }
-</style></head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agroshop Mundo Animal - O Paraíso do Seu Pet em Goiânia!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #264D43; /* Verde Escuro do Logo */
+            --color-secondary: #5B9C7F; /* Verde Claro do Logo */
+            --color-accent: #F9A825; /* Laranja/Amarelo */
+            --color-white: #ffffff;
+            --color-dark: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: var(--color-dark);
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: var(--color-primary);
+            color: var(--color-white);
+            text-align: center;
+            padding: 50px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(38, 77, 67, 0.8), rgba(38, 77, 67, 0.8)), url('https://via.placeholder.com/1920x1080.png?text=FOTO+DE+PETS+E+LOJA') no-repeat center center/cover;
+            z-index: -1;
+        }
+        
+        /* Estilos do logo integrado */
+        .logo-container {
+            width: 150px;
+            height: 50px;
+            margin: 0 auto 20px;
+            background-image: url('Logotipo29.png');
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+        }
+
+        header h1 {
+            font-size: 2.8em;
+            font-weight: 900;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        header p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--color-accent);
+            color: var(--color-dark);
+            padding: 15px 30px;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 50px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #fbbd4a;
+        }
+
+        section {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        section h2 {
+            font-size: 2em;
+            font-weight: 900;
+            margin-bottom: 20px;
+            color: var(--color-primary);
+        }
+
+        section h3 {
+            font-size: 1.5em;
+            color: var(--color-primary);
+            margin-top: 40px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .vantagens .vantagem-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .vantagens .vantagem-item .icon {
+            font-size: 3em;
+            color: var(--color-secondary);
+            margin-bottom: 10px;
+        }
+
+        .ofertas .oferta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .ofertas .oferta-card {
+            background: var(--color-white);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease;
+        }
+
+        .ofertas .oferta-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Estilos para o link do card */
+        .ofertas .oferta-link {
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+            display: block;
+        }
+
+        .ofertas .oferta-card .preco {
+            font-size: 1.5em;
+            font-weight: 900;
+            color: var(--color-accent);
+        }
+        
+        .ofertas .oferta-card p {
+            font-size: 0.9em;
+            color: var(--color-dark);
+        }
+
+        .programas .programa-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .programas .programa-card {
+            background: var(--color-white);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .depoimentos {
+            background: var(--color-primary);
+            color: var(--color-white);
+        }
+
+        /* Estilos para os depoimentos estáticos */
+        .depoimentos-estaticos {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .depoimentos-estaticos .depoimento-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 450px;
+            flex: 1;
+        }
+
+        .contato {
+            background: #f4f4f4;
+        }
+
+        .contato .contato-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contato .info-item {
+            font-size: 1.2em;
+        }
+
+        .contato .mapa iframe {
+            width: 100%;
+            height: 400px;
+            border: 0;
+            border-radius: 10px;
+            margin-top: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            background: var(--color-dark);
+            color: var(--color-white);
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+            .vantagens .vantagem-item {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
 <body>
-<header>
-<div class="container">
-<a class="logo" href="#hero"><img alt="Logo Nexus Data Partners" src="logo.png"/></a>
-<nav class="main-nav">
-<ul>
-<li><a href="#hero">Início</a></li>
-<li><a href="#why-choose-us">Sobre Nós</a></li>
-<li><a href="#services">Serviços</a></li>
-<li><a href="#tools">Ferramentas</a></li>
-<li><a href="#cases">Cases</a></li>
-<li><a class="cta-nav" href="#contact">Auditoria Gratuita</a></li>
-</ul>
-</nav>
-</div>
-</header>
-<main>
-<section id="hero" style=" background-size: cover; background-position: center;">
-<div class="container">
-<div class="hero-content">
-<h1>Migre e otimize PostgreSQL &amp; MySQL sem downtime</h1>
-<p>Especialistas para PMEs — alta performance, segurança e alta disponibilidade na AWS (RDS/Aurora) e on‑premises. Auditoria inicial gratuita.</p>
-<a class="cta-button" href="#contact">Quero Auditoria Gratuita</a>
-<a class="cta-button" href="https://wa.me/5562981561666?text=Quero%20uma%20auditoria%20gratuita%20do%20banco%20de%20dados" target="_blank">Falar no WhatsApp</a>
-</div>
-</div>
-</section>
-<section id="why-choose-us">
-<div class="container">
-<h2>Por Que Escolher a Nexus Data Partners?</h2>
-<div class="features-grid">
-<div class="feature-item">
-<img alt="Expertise" src="icon-expertise.png"/>
-<h3>Expertise Especializada</h3>
-<p>Profundo conhecimento em PostgreSQL, MySQL e serviços de banco de dados AWS como RDS e Aurora.</p>
-</div>
-<div class="feature-item">
-<img alt="Foco em PMEs" src="icon-pme.png"/>
-<h3>Foco em PMEs</h3>
-<p>Soluções personalizadas para as necessidades e orçamentos de pequenas e médias empresas.</p>
-</div>
-<div class="feature-item">
-<img alt="Suporte Cloud e On-Premises" src="icon-cloud-onprem.png"/>
-<h3>Suporte Cloud e On-Premises</h3>
-<p>Gerenciamento e migração de bancos de dados tanto em servidores locais quanto na AWS.</p>
-</div>
-<div class="feature-item">
-<img alt="Resultados Comprovados" src="icon-results.png"/>
-<h3>Resultados Comprovados</h3>
-<p>Histórico de projetos bem-sucedidos, garantindo performance, segurança e alta disponibilidade.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="services">
-<div class="container">
-<h2>Nossos Serviços</h2>
-<div class="services-grid">
-<div class="service-item">
-<img alt="Migração para a AWS" class="service-img" src="servico-migracao.png"/>
-<h3>Migração para a AWS</h3>
-<p>Migração segura e eficiente de PostgreSQL e MySQL on-premises para a AWS, utilizando ferramentas como o DMS.</p>
-</div>
-<div class="service-item">
-<img alt="Administração de Banco de Dados na Nuvem AWS" class="service-img" src="servico-dba-cloud.png"/>
-<h3>Administração de Banco de Dados na Nuvem AWS</h3>
-<p>Gerenciamento completo de RDS, Aurora e outros serviços de banco de dados AWS.</p>
-</div>
-<div class="service-item">
-<img alt="Suporte On-Premises" class="service-img" src="servico-onprem.png"/>
-<h3>Suporte On-Premises</h3>
-<p>Administração, otimização e manutenção de seus bancos de dados PostgreSQL e MySQL locais.</p>
-</div>
-<div class="service-item">
-<img alt="Alta Disponibilidade e Recuperação" class="service-img" src="servico-ha.png"/>
-<h3>Alta Disponibilidade e Recuperação</h3>
-<p>Implementação de soluções para garantir a continuidade dos seus dados, com backups e failover.</p>
-</div>
-<div class="service-item">
-<img alt="Consultoria e Melhores Práticas" class="service-img" src="servico-consultoria.png"/>
-<h3>Consultoria e Melhores Práticas</h3>
-<p>Auditoria, recomendações e implementação de melhores práticas para performance e segurança.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="tools">
-<div class="container">
-<h2>Nossas Ferramentas Exclusivas</h2>
-<p class="tools-intro">Desenvolvemos ferramentas poderosas para otimizar a gestão de bancos de dados. Elas são exclusivas para quem contrata nossa consultoria, mas também compartilhamos parte do nosso trabalho com a comunidade open source.</p>
-<div class="tools-grid">
-<div class="tool-item">
-<h3>pg_monitor</h3>
-<p>Ferramenta de monitoramento proativo para bancos de dados PostgreSQL. Ajuda a identificar gargalos, tendências de performance e possíveis problemas antes que afetem sua aplicação.</p>
-</div>
-<div class="tool-item">
-<h3>postgresql-suggest-config</h3>
-<p>Um otimizador inteligente de configurações que analisa seu ambiente PostgreSQL e sugere ajustes precisos para melhorar a performance e a estabilidade do servidor.</p>
-</div>
-<div class="tool-item">
-<h3>postgresql-migration-script</h3>
-<p>Scripts e automações para migrações de bancos de dados PostgreSQL, garantindo a integridade dos dados e minimizando o tempo de inatividade.</p>
-</div>
-<div class="tool-item">
-<h3>mysql-config-suggester</h3>
-<p>Analisa o seu servidor MySQL e oferece recomendações de configuração personalizadas para extrair o máximo de desempenho do seu banco de dados.</p>
-</div>
-<div class="tool-item">
-<h3>mysql-health-checker</h3>
-<p>Uma ferramenta de auditoria que verifica a saúde e a segurança do seu ambiente MySQL, alertando sobre vulnerabilidades e problemas de manutenção.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="cases">
-<div class="container">
-<h2>Nossos Cases de Sucesso</h2>
-<div class="cases-grid">
-<div class="case-item">
-<h3>Migração de Banco de Dados com Zero Downtime</h3>
-<p class="case-subtitle">O Desafio:</p>
-<p>Uma empresa em crescimento estava com sua infraestrutura de banco de dados (MySQL on-premises) desatualizada, enfrentando altos custos de manutenção, escalabilidade limitada e riscos de segurança. Era essencial migrar para a nuvem para acompanhar a demanda, mas qualquer tempo de inatividade poderia causar grandes perdas financeiras e de clientes. O desafio era realizar a migração de forma segura, eficiente e com zero interrupção para as operações do negócio.</p>
-<p class="case-subtitle">Nossa Solução:</p>
-<p>A Nexus Data Partners planejou e executou uma estratégia de migração em fases, utilizando o Amazon Web Services (AWS) como destino. Implementamos uma solução de replicação de dados em tempo real para sincronizar o banco de dados on-premises com o novo ambiente AWS RDS (Relational Database Service). Realizamos testes de performance exaustivos em um ambiente de homologação para garantir que a transição seria perfeita. A migração final foi um "cut-over" (troca) rápido, feito fora do horário de pico, garantindo que a aplicação estivesse operando no novo ambiente da nuvem sem que os usuários percebessem qualquer parada.</p>
-<p class="case-subtitle">Resultados Alcançados:</p>
-<ul>
-<li>**Zero Downtime:** A migração foi concluída sem qualquer interrupção dos serviços.</li>
-<li>**Redução de Custos:** A infraestrutura na nuvem permitiu uma redução significativa dos custos operacionais e de manutenção.</li>
-<li>**Performance Otimizada:** O novo ambiente AWS proporcionou um aumento de performance, com melhor tempo de resposta para as consultas do banco de dados.</li>
-<li>**Escalabilidade e Segurança:** O cliente agora possui uma base de dados robusta e escalável, pronta para o crescimento futuro, com segurança e resiliência aprimoradas.</li>
-</ul>
-</div>
-<div class="case-item">
-<h3>Otimização e Manutenção Proativa de PostgreSQL</h3>
-<p class="case-subtitle">O Desafio:</p>
-<p>Um cliente, com uma aplicação crítica rodando em um banco de dados PostgreSQL, estava enfrentando quedas de performance intermitentes, lentidão nas consultas e preocupações com a estabilidade geral do sistema. A equipe interna não tinha a expertise necessária para identificar e resolver a raiz dos problemas de forma proativa, o que resultava em horas de trabalho reativo e estresse operacional.</p>
-<p class="case-subtitle">Nossa Solução:</p>
-<p>A Nexus Data Partners assumiu a gestão e monitoramento proativo do ambiente PostgreSQL do cliente. Começamos com uma auditoria completa para identificar gargalos de performance, queries lentas e configurações de sistema subotimizadas. Implementamos ferramentas de monitoramento em tempo real e desenvolvemos scripts de automação para tarefas de manutenção. Criamos um plano de otimização de consultas e índices, além de um cronograma de manutenção preventiva, incluindo rotinas de vacuum e backups diários automatizados.</p>
-<p class="case-subtitle">Resultados Alcançados:</p>
-<ul>
-<li>**Estabilidade do Sistema:** As quedas de performance e incidentes de lentidão foram completamente eliminados.</li>
-<li>**Melhora na Performance:** A performance das consultas mais importantes foi otimizada, resultando em uma experiência de usuário mais rápida e fluida.</li>
-<li>**Foco no Core Business:** A equipe de desenvolvimento do cliente agora pode focar em inovação, em vez de gastar tempo resolvendo problemas no banco de dados.</li>
-<li>**Mitigação de Riscos:** O monitoramento contínuo e a manutenção proativa reduziram significativamente os riscos de falhas no sistema e perda de dados.</li>
-</ul>
-</div>
-</div>
-</div>
-</section>
-<section id="testimonials"><div class="container"><h2>O que clientes dizem</h2><div class="testimonials-grid"><div class="testimonial-item"><p class="quote">“Migramos para AWS com zero downtime. O tempo de resposta caiu e o time parou de ‘apagar incêndio’.”</p><p class="role">CTO de E‑commerce</p></div><div class="testimonial-item"><p class="quote">“A auditoria inicial mostrou gargalos críticos. Em 10 dias, nossas queries chave ficaram até 40% mais rápidas.”</p><p class="role">Head de Produto (SaaS)</p></div><div class="testimonial-item"><p class="quote">“O DBA como serviço nos deu previsibilidade e segurança. Monitoramento proativo fez toda diferença.”</p><p class="role">Gerente de TI</p></div></div></div></section><section id="contact">
-<div class="container">
-<p class="contact-subcopy">Preencha o formulário e retornaremos em até 1 dia útil. Se preferir, fale conosco no WhatsApp.</p><h2>Pronto para impulsionar seu banco de dados?</h2>
-<div class="contact-form">
-<form action="https://formspree.io/f/xeozdbkd" id="contact-form" method="POST">
-<div class="form-group">
-<label for="name">Nome:</label>
-<input id="name" name="name" required="" type="text"/>
-</div>
-<div class="form-group">
-<label for="email">E-mail:</label>
-<input id="email" name="email" required="" type="email"/>
-</div>
-<div class="form-group">
-<label for="message">Como podemos te ajudar?</label>
-<textarea id="message" name="message" required="" rows="5"></textarea>
-</div>
-<button class="cta-button" type="submit">Solicitar Contato</button>
-</form>
-<div class="form-message" id="form-message"></div>
-</div>
-<a class="cta-button" href="https://wa.me/5562981561666?text=Quero%20uma%20auditoria%20gratuita%20do%20banco%20de%20dados" target="_blank">Chamar no WhatsApp</a></div>
-</section>
-</main>
-<footer>
-<div class="container">
-<p>© 2025 Nexus Data Partners. Todos os direitos reservados.</p>
-</div>
-</footer>
-<div id="sticky-cta"><div class="sticky-inner"><span class="sticky-text">Auditoria gratuita de banco de dados para PMEs — fale com um especialista agora.</span><a class="sticky-btn" href="#contact">Quero a auditoria</a><a class="sticky-btn outline" href="https://wa.me/5562981561666?text=Quero%20uma%20auditoria%20gratuita%20do%20banco%20de%20dados" target="_blank">Falar no WhatsApp</a></div></div><a aria-label="Abrir WhatsApp" href="https://wa.me/5562981561666?text=Quero%20uma%20auditoria%20gratuita%20do%20banco%20de%20dados" id="whatsapp-float" target="_blank"><span class="wa-icon"></span></a></body>
+
+    <header>
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="logo-container"></div>
+            <h1>O Paraíso do Seu Pet em Goiânia!</h1>
+            <p>A melhor seleção de rações e acessórios, com a confiança e o preço que você procura.</p>
+            <a href="https://wa.me/5562995483294" class="btn" target="_blank">Fale Conosco no WhatsApp!</a>
+        </div>
+    </header>
+
+    <section class="vantagens">
+        <div class="container">
+            <h2>Por que escolher a Agroshop?</h2>
+            <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+                <div class="vantagem-item">
+                    <span class="icon">🐾</span>
+                    <h3>Qualidade e Variedade</h3>
+                    <p>Do premium ao super premium, temos as melhores marcas para seu pet.</p>
+                </div>
+                <div class="vantagem-item">
+                    <span class="icon">💰</span>
+                    <h3>Preço Justo</h3>
+                    <p>As melhores ofertas e promoções para o seu bolso, todo mês!</p>
+                </div>
+                <div class="vantagem-item">
+                    <span class="icon">🚚</span>
+                    <h3>Frete Fixo R$ 7,00</h3>
+                    <p>Entrega rápida e com preço justo em toda Goiânia!</p>
+                </div>
+                <div class="vantagem-item">
+                    <span class="icon">💙</span>
+                    <h3>Atendimento Especializado</h3>
+                    <p>Nossa equipe está pronta para ajudar a encontrar a nutrição ideal para o seu pet.</p>
+                </div>
+                <div class="vantagem-item">
+                    <span class="icon">⭐</span>
+                    <h3>Programas de Fidelidade</h3>
+                    <p>Sua compra vale prêmios! Participe do nosso 'Agroshop Premiada: 10 + 1!'</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ofertas">
+        <div class="container">
+            <h2>Ofertas Especiais do Mês</h2>
+
+            <h3>O Pacotão da Economia</h3>
+            <div class="oferta-grid">
+                <a href="https://wa.me/5562995483294?text=Olá, estou interessado na Magnus%20Adulto%20Grande%20Porte%2025kg" class="oferta-link" target="_blank">
+                    <div class="oferta-card">
+                        <h3>Magnus Adulto G. Porte 25kg</h3>
+                        <p class="preco">R$ 130,00</p>
+                        <p>A ração de qualidade em um pacote gigante para garantir a nutrição do seu grandalhão.</p>
+                    </div>
+                </a>
+                <a href="https://wa.me/5562995483294?text=Olá, estou interessado na Besser%20Adulto%20Grande%20Porte%2025kg" class="oferta-link" target="_blank">
+                    <div class="oferta-card">
+                        <h3>Besser Adulto G. Porte 25kg</h3>
+                        <p class="preco">R$ 125,00</p>
+                        <p>Mais de 20 quilos de ração com um preço que não pesa no bolso!</p>
+                    </div>
+                </a>
+                <a href="https://wa.me/5562995483294?text=Olá, estou interessado na Capitão%20Dog%2014kg" class="oferta-link" target="_blank">
+                    <div class="oferta-card">
+                        <h3>Capitão Dog 14kg</h3>
+                        <p class="preco">R$ 59,00</p>
+                        <p>A super promoção que faz sucesso! Sabor e nutrição por um preço especial.</p>
+                    </div>
+                </a>
+                <a href="https://wa.me/5562995483294?text=Olá, estou interessado na Besser%20Raças%20Pequenas%2010kg" class="oferta-link" target="_blank">
+                    <div class="oferta-card">
+                        <h3>Besser Raças Pequenas 10kg</h3>
+                        <p class="preco">R$ 60,00</p>
+                        <p>A nutrição perfeita para seu cãozinho pular de alegria o mês inteiro!</p>
+                    </div>
+                </a>
+                <a href="https://wa.me/5562995483294?text=Olá, estou interessado na Plus%20Pet%20High%20Premiun%2010kg" class="oferta-link" target="_blank">
+                    <div class="oferta-card">
+                        <h3>Plus Pet High Premiun 10kg</h3>
+                        <p class="preco">R$ 70,00</p>
+                        <p>Força e vitalidade com o melhor da linha Plus Pet.</p>
+                    </div>
+                </a>
+            </div>
+
+            <h3>O Combo Perfeito</h3>
+            <div class="oferta-grid">
+                <a href="https://wa.me/5562995483294?text=Olá, estou interessado no Whiskas%20Peixe%20Fardo" class="oferta-link" target="_blank">
+                    <div class="oferta-card">
+                        <h3>Whiskas Peixe Fardo</h3>
+                        <p class="preco">R$ 17,99</p>
+                        <p>A pedida certa para o dia a dia, com aquele sabor que seu gato adora!</p>
+                    </div>
+                </a>
+                <a href="https://wa.me/5562995483294?text=Olá, estou interessado na Chanin%20Peixe%2010kg" class="oferta-link" target="_blank">
+                    <div class="oferta-card">
+                        <h3>Chanin Peixe 10kg</h3>
+                        <p class="preco">R$ 65,00</p>
+                        <p>Qualidade e economia para o seu gato, na medida certa.</p>
+                    </div>
+                </a>
+                <a href="https://wa.me/5562995483294?text=Olá, estou interessado na Chanin%20Mix%2025kg" class="oferta-link" target="_blank">
+                    <div class="oferta-card">
+                        <h3>Chanin Mix 25kg</h3>
+                        <p class="preco">R$ 170,00</p>
+                        <p>Um pacote gigante para garantir a nutrição completa do seu pet.</p>
+                    </div>
+                </a>
+            </div>
+            
+            <a href="https://wa.me/5562995483294" class="btn" target="_blank" style="margin-top: 40px;">Fale Conosco no WhatsApp!</a>
+        </div>
+    </section>
+
+    <section class="programas" style="background-color: var(--color-secondary);">
+        <div class="container">
+            <h2>Sua Fidelidade Vale Prêmios!</h2>
+            <p style="margin-bottom: 30px;">Conheça nossos programas exclusivos e comece a ganhar com a gente:</p>
+            <div class="programa-grid">
+                <div class="programa-card">
+                    <h3>Agroshop Premiada: 10 + 1!</h3>
+                    <p>Compre 10 sacos de ração, acumule pontos e ganhe o 11º inteiramente grátis!</p>
+                </div>
+                <div class="programa-card">
+                    <h3>Venda direta para criadores </h3>
+                    <p>Se você cuida de muitos corações, fale conoso que iremos te ajudar nessa missão, faremos condições e preços especias para você!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="depoimentos">
+        <div class="container">
+            <h2>O que nossos clientes AMAM dizer:</h2>
+            <div class="depoimentos-estaticos">
+                <div class="depoimento-card">
+                    <p>"A Agroshop Mundo Animal salvou meu bolso e meu pet adora a ração! Preços ótimos e entrega rápida."</p>
+                    <p><strong>- Carla M.</strong></p>
+                </div>
+                <div class="depoimento-card">
+                    <p>"Encontrei rações que meu pet com alergia pode comer, e com um preço justo! Super recomendo."</p>
+                    <p><strong>- Pedro L.</strong></p>
+                </div>
+                <div class="depoimento-card">
+                    <p>"O programa de fidelidade é top! Já ganhei ração grátis várias vezes. Cliente fiel da Agroshop!"</p>
+                    <p><strong>- Ana R.</strong></p>
+                </div>
+                <div class="depoimento-card">
+                    <p>"A variedade de produtos é enorme, e sempre encontro novidades para mimar meus bichinhos."</p>
+                    <p><strong>- Marcos V.</strong></p>
+                </div>
+                <div class="depoimento-card">
+                    <p>"Atendimento nota mil! A equipe sempre me ajuda a escolher a melhor opção para a idade e porte do meu pet."</p>
+                    <p><strong>- Juliana F.</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contato">
+        <div class="container">
+            <h2>Visite-nos ou Fale com a Gente!</h2>
+            <div class="contato-info">
+                <div class="info-item">
+                    <p>📍 <strong>Endereço:</strong></p>
+                    <p>Av. Samambaia, 467 - QD 31 LT 35 - Res. Antônio Carlos Pires</p>
+                    <p>Goiânia, GO, 74693-156</p>
+                </div>
+                <div class="info-item">
+                    <p>📞 <strong>WhatsApp:</strong></p>
+                    <p>+55 62 99548-3294</p>
+                </div>
+                <div class="info-item">
+                    <p>📸 <strong>Instagram:</strong></p>
+                    <p>@agroshop.m.a</p>
+                </div>
+            </div>
+            <div class="mapa">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d489547.8985384417!2d-49.85002262656249!3d-16.5466347!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935e8d78146c37bd%3A0xee08f28de702702!2sAgroShopp%20Mundo%20Animal!5e0!3m2!1spt-BR!2sbr!4v1755277461176!5m2!1spt-BR!2sbr" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 Agroshop Mundo Animal. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+</body>
 </html>
